@@ -3880,6 +3880,11 @@ expand-brackets@^2.1.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
+export-from-json@1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/export-from-json/-/export-from-json-1.4.1.tgz#7700516406b4c0b6d1a279d3e4dfb6254b109bcb"
+  integrity sha512-7kg3g55+jKUTu13w0byDBTZIr4pR/yBlusqWuBCF3pukbyUC8wTsqRmqqTHELWXkCzdik7n/qSPGVvZC7sSuVQ==
+
 extend-shallow@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/extend-shallow/-/extend-shallow-2.0.1.tgz#51af7d614ad9a9f610ea1bafbb989d6b1c56890f"
@@ -4601,11 +4606,6 @@ human-signals@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/human-signals/-/human-signals-2.1.0.tgz#dc91fcba42e4d06e4abaed33b3e7a3c02f514ea0"
   integrity sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==
-
-humps@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/humps/-/humps-2.0.1.tgz#dd02ea6081bd0568dc5d073184463957ba9ef9aa"
-  integrity sha512-E0eIbrFWUhwfXJmsbdjRQFQPrl5pTEoKlz163j1mTqqUnU9PgR4AgB8AIITzuB3vLBdxZXyZ9TDIrwB2OASz4g==
 
 iconv-lite@^0.4.24:
   version "0.4.24"

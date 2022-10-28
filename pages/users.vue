@@ -20,14 +20,17 @@
                 @click:outside="close"
               >
                 <template #activator="{ on, attrs }">
+                  <v-btn color="primary" dark v-bind="attrs" v-on="on">
+                    New Item
+                  </v-btn>
                   <v-btn
                     color="primary"
                     dark
-                    class="mb-2"
+                    class="mr-2"
                     v-bind="attrs"
-                    v-on="on"
+                    @click="downloadFile"
                   >
-                    New Item
+                    Download
                   </v-btn>
                 </template>
                 <v-card>
@@ -129,6 +132,7 @@
 </template>
 
 <script>
+import exportFromJSON from 'export-from-json'
 import {
   deleteUse,
   getUserList,
@@ -153,6 +157,68 @@ export default {
       dialog: false,
       dialogDelete: false,
       editedItem: INITIAL_EDITED_ITEM,
+      investorsList: [
+        {
+          id: 0,
+          name: 'Gautam',
+          email: 'gautam@example.com',
+          investment: 'Stocks',
+        },
+        {
+          id: 1,
+          name: 'Sam',
+          email: 'sam@example.com',
+          investment: 'Bonds',
+        },
+        {
+          id: 2,
+          name: 'Tim',
+          email: 'tim@example.com',
+          investment: 'Options',
+        },
+        {
+          id: 3,
+          name: 'Kim',
+          email: 'kim@example.com',
+          investment: 'Stocks',
+        },
+        {
+          id: 4,
+          name: 'John',
+          email: 'john@example.com',
+          investment: 'Options',
+        },
+        {
+          id: 5,
+          name: 'Lee',
+          email: 'lee@example.com',
+          investment: 'Stocks',
+        },
+        {
+          id: 6,
+          name: 'Charlotte',
+          email: 'charlotte@example.com',
+          investment: 'Options',
+        },
+        {
+          id: 7,
+          name: 'Amy',
+          email: 'amy@example.com',
+          investment: 'Stocks',
+        },
+        {
+          id: 8,
+          name: 'Mark',
+          email: 'mark@example.com',
+          investment: 'Bonds',
+        },
+        {
+          id: 9,
+          name: 'Rose',
+          email: 'rose@example.com',
+          investment: 'Stocks',
+        },
+      ],
     }
   },
   async fetch() {
@@ -291,6 +357,14 @@ export default {
         })
         .then(() => {})
         .catch(() => {})
+    },
+
+    downloadFile() {
+      const data = this.users.data
+      const fileName = 'users'
+      const exportType = exportFromJSON.types.csv
+
+      if (data) exportFromJSON({ data, fileName, exportType })
     },
   },
 }
