@@ -222,13 +222,10 @@ export default {
     }
   },
   async fetch() {
-    console.log('sebelum ')
     this.users = await getUserList({
       page: (+this.$route.query.page || INITIAL_PAGINATION.page) - 1,
       limit: +this.$route.query.limit || INITIAL_PAGINATION.limit,
     })
-
-    console.log('this.users ', this.users)
   },
   fetchOnServer: false,
   computed: {
