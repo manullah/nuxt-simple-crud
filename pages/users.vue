@@ -230,7 +230,7 @@ export default {
 
     console.log('this.users ', this.users)
   },
-  // fetchOnServer: false,
+  fetchOnServer: false,
   computed: {
     formTitle() {
       return this.editedItem.id ? 'Edit Item' : 'New Item'
