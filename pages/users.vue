@@ -46,24 +46,41 @@
                             v-model="editedItem.title"
                             :items="['mr', 'ms', 'mrs', 'miss', 'dr']"
                             label="Title"
+                            :hint="validationError.title"
+                            :error="!!validationError.title"
+                            persistent-hint
+                            @input="validationError.title = null"
                           ></v-select>
                         </v-col>
                         <v-col cols="12" sm="6" md="4">
                           <v-text-field
                             v-model="editedItem.firstName"
                             label="First Name"
+                            :hint="validationError.firstName"
+                            :error="!!validationError.firstName"
+                            persistent-hint
+                            @input="validationError.firstName = null"
                           ></v-text-field>
                         </v-col>
                         <v-col cols="12" sm="6" md="4">
                           <v-text-field
                             v-model="editedItem.lastName"
                             label="Last Name"
+                            :hint="validationError.lastName"
+                            :error="!!validationError.lastName"
+                            persistent-hint
+                            @input="validationError.lastName = null"
                           ></v-text-field>
                         </v-col>
                         <v-col v-if="!editedItem.id" cols="12" sm="6" md="4">
                           <v-text-field
                             v-model="editedItem.email"
                             label="Email"
+                            type="email"
+                            :hint="validationError.email"
+                            :error="!!validationError.email"
+                            persistent-hint
+                            @input="validationError.email = null"
                           ></v-text-field>
                         </v-col>
                       </v-row>
@@ -219,6 +236,7 @@ export default {
           investment: 'Stocks',
         },
       ],
+      validationError: INITIAL_EDITED_ITEM,
     }
   },
   async fetch() {
@@ -297,6 +315,7 @@ export default {
       this.dialogDelete = false
       this.$nextTick(() => {
         this.editedItem = Object.assign({}, INITIAL_EDITED_ITEM)
+        this.validationError = Object.assign({}, INITIAL_EDITED_ITEM)
       })
     },
 
@@ -309,15 +328,14 @@ export default {
               type: 'success',
             })
             this.$fetch()
+            this.close()
           })
           .catch((err) => {
             this.$store.dispatch('alert/setAlert', {
               text: `Failed to update user. ${err}`,
               type: 'error',
             })
-          })
-          .finally(() => {
-            this.close()
+            this.validationError = err.response.data.data
           })
       } else {
         createUser(this.editedItem)
@@ -327,15 +345,14 @@ export default {
               type: 'success',
             })
             this.$fetch()
+            this.close()
           })
           .catch((err) => {
             this.$store.dispatch('alert/setAlert', {
               text: `Failed to create user. ${err}`,
               type: 'error',
             })
-          })
-          .finally(() => {
-            this.close()
+            this.validationError = err.response.data.data
           })
       }
     },
